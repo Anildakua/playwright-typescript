@@ -1,0 +1,12 @@
+{
+    "validuser":{
+        "email": "anil.d@unosysit.com",
+        "password": "Anil@123"
+    },
+    "baseURL":{
+        "url": "http://unosysdev.com/Amar-Ceramic-Test/",
+        "dashboardURL" : "http://unosysdev.com/Amar-Ceramic-Test/dashboard",
+        "forgetedPasswordURL" : "http://unosysdev.com/Amar-Ceramic-Test/ViewsController/passwordRecoveryLink"
+    }
+
+}

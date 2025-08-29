@@ -1,0 +1,22 @@
+{
+  "name": "ammarplaywrighttest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "report": "npx playwright show-report"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.0"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.6.0",
+    "winston": "^3.17.0",
+    "xlsx": "^0.18.5"
+  }
+}
