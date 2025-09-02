@@ -21,12 +21,18 @@ const myPages= mytest.extend<pages>({
     },
 
     dashboard: async ({ page }, use) => {
-        await use(new DashboardPage(page));
+
+        const dashbord =new DashboardPage(page)
+        await use(dashbord);
+        await dashbord.ClickOnMyProfile();
+        await dashbord.ClickOnLogoutButton();
     },
 
     addnewuser: async ({ page }, use) => {
         await use(new AddNewUserPage(page));
     },
+
+    
 })
 
 export const test= myPages;

@@ -3,6 +3,7 @@ import * as data from '../test-data/logindata.json';
 
 test(' Add new user', async ({ page ,login , dashboard ,addnewuser  }) => {
 
+    
     // Verify successful login by checking the URL or dashboard title
     await page.waitForURL(data.baseURL.dashboardURL);    
 
@@ -17,6 +18,8 @@ test(' Add new user', async ({ page ,login , dashboard ,addnewuser  }) => {
     await addnewuser.enterEmail('qweredcvd');
     await addnewuser.enterMobileNumber('465u647875');
     await addnewuser.enterWhatsAppNo('fvfb dghbn');
-    await addnewuser.clickOnDateOfBarth('1997',1,'11'); 
+    await addnewuser.clickOnDateOfBarth('1997',1,'11');  
     await addnewuser.clickOnCloseButton(); 
+
+
 })

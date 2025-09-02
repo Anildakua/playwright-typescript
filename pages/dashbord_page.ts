@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 import logger from '../utils/loggerUtil';
 
 export class DashboardPage {
@@ -9,7 +9,7 @@ export class DashboardPage {
   private readonly offersPageLinkLocator="//div[text()='Offers']";
   private readonly termsAndConditionsPageLocator="//div[text()='Terms and Conditions']";
   private readonly AddNewUserPageLinkLocator="//a[text()='Add New User']";
-  private readonly myProfileDropDownLocator="div[class='avatar avatar-online']";
+  private readonly myProfileDropDownLocator="//img[@id='header_profile_photo_']"; //div[class='avatar avatar-online']
 
   constructor(private page: Page) { }
 
@@ -48,7 +48,12 @@ export class DashboardPage {
   }
 
 
+  async ClickOnLogoutButton() {
+    await this.page.click('#logout-link'); // Adjust the selector as needed
+    logger.info("Clicked on the Logout button and logged out successfully");
+  } 
   
+
   async navigateToDashboard() {
     await this.page.goto('/dashboard');
   }

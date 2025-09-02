@@ -1,10 +1,12 @@
-import { test , expect  } from '../fixtures/pageFixture'; 
+import { test , expect  } from '@playwright/test';
 import * as data from '../test-data/logindata.json';
 import { ExcelUtil } from '../utils/excelUtil';
 import  logger  from "../utils/loggerUtil";
+import { loginPage } from '../pages/login_page';
 
-test(' valid Login Test', async ({ page , baseURL ,login }) => {
-    
+
+test(' valid Login Test', async ({ page , baseURL }) => {
+    const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);
 
@@ -17,12 +19,13 @@ test(' valid Login Test', async ({ page , baseURL ,login }) => {
 
     // Verify successful login by checking the URL or dashboard title
     await login.verifyLoginSuccess(); // Using the new method from loginPage class
+    logger.info("Valid Login test is complited");
 
 });
 
 
-test('Invalid Login Test', async ({ page , baseURL , login}) => {
-
+test('Invalid Login Test', async ({ page , baseURL }) => {
+    const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);  
 
@@ -35,12 +38,13 @@ test('Invalid Login Test', async ({ page , baseURL , login}) => {
 
     await login.LoginFailureErrorMassageDisplayed(); // Using the new method from loginPage class
 
+    logger.info("Invalid Login test is complited");
    
 });
 
 
-test('Forgot Password Link Test', async ({ page , baseURL ,login}) => {
-
+test('Forgot Password Link Test', async ({ page , baseURL }) => {
+    const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);  
 
@@ -53,5 +57,5 @@ test('Forgot Password Link Test', async ({ page , baseURL ,login}) => {
     // expected URL for the forgot password page
     const forgotPasswordTitle = await page.title();
     expect(forgotPasswordTitle).toContain('Forgot Password'); // Adjust the expected title as needed
-    
+    logger.info("Forgot Password Link test is complited");
 });
