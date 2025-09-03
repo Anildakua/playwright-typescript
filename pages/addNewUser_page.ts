@@ -1,5 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import logger from '../utils/loggerUtil';
+import { ExcelUtil } from '../utils/ExcelUtil';
 
 export class AddNewUserPage {
 
@@ -29,13 +30,13 @@ export class AddNewUserPage {
         await this.page.fill(this.EmailInputLocator , email);
         logger.info(`Entered email: ${email}`);
     }
-    async enterWhatsAppNo(whatsAppNo: string) {
-        await this.page.fill(this.whatsAppNoInputLocator , whatsAppNo);
+    async enterWhatsAppNo(whatsAppNo) {
+        await this.page.locator(this.whatsAppNoInputLocator).fill(whatsAppNo.toString());
         logger.info(`Entered WhatsApp number: ${whatsAppNo}`);
     }
 
-    async enterMobileNumber(mobileNumber: string) {
-        await this.page.fill(this.mobileNoInputLocator , mobileNumber);
+    async enterMobileNumber(mobileNumber) {
+        await this.page.fill(this.mobileNoInputLocator , mobileNumber.toString());
         logger.info(`Entered mobile number: ${mobileNumber}`);
     }
     
@@ -43,11 +44,17 @@ export class AddNewUserPage {
         await this.page.locator(this.saveButtonLocator).click();
         logger.info("Clicked on the Save button");
     }
-
-    async clickOnDateOfBarth(year: string, month: number, day: string) {
+    
+    async clickOnDateOfBarth(excelDateValue) {
+        const excelSerialNumber = excelDateValue; // e.g., 35490
+        const date = new Date((excelSerialNumber - 25569) * 86400 * 1000)
+        const year = date.getFullYear();
+        const month = date.getMonth()+1;
+        const day= date.getDate();
+      
         await this.page.locator(this.DateOfBirthDtaePekerLocator).click();
-        await this.page.selectOption("select[data-handler='selectYear']", { label: year});
-        await this.page.selectOption("select[data-handler='selectMonth']",{index :month-1});
+        await this.page.selectOption("select[data-handler='selectYear']", { label: year.toString()});
+        await this.page.selectOption("select[data-handler='selectMonth']",{ index : month-1});
         await this.page.locator(`//td[@data-handler="selectDay"]/a[text()='${day}']`).click();
         logger.info(`Selected date of birth: ${year}-${month}-${day}`);
     }

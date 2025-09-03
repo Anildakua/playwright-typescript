@@ -2,16 +2,9 @@ import { Page , expect } from "@playwright/test";
 import * as data from '../test-data/logindata.json';
 import { DashboardPage } from "./dashbord_page";
 import  logger  from "../utils/loggerUtil";
+import { forgotPassword } from "./forgotPassword_page";
 
  export class loginPage {
-     static
-         // Initialize the page object
-         loginToApplication(email: string, password: string) {
-             throw new Error('Method not implemented.');
-     }
-     static navigateToLoginPage(loginURL: any) {
-         throw new Error('Method not implemented.');
-     }
 
     private readonly EmailInputLocater="#email";
     private readonly PasswordInputLocator="#password"; ;
@@ -44,6 +37,7 @@ import  logger  from "../utils/loggerUtil";
     async clickForgotPassword() {
         await this.page.locator(this.ForgotPasswordLinkLocator).click();
         logger.info("Clicked on the 'Forgot Password?' link");
+        return new forgotPassword(this.page);
     }
 
     //for quick login

@@ -1,11 +1,11 @@
 import { test , expect  } from '@playwright/test';
 import * as data from '../test-data/logindata.json';
-import { ExcelUtil } from '../utils/excelUtil';
+import { ExcelUtil } from '../utils/ExcelUtil';
 import  logger  from "../utils/loggerUtil";
 import { loginPage } from '../pages/login_page';
 
 
-test(' valid Login Test', async ({ page , baseURL }) => {
+test(' valid Login Test :01', async ({ page , baseURL }) => {
     const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);
@@ -24,14 +24,14 @@ test(' valid Login Test', async ({ page , baseURL }) => {
 });
 
 
-test('Invalid Login Test', async ({ page , baseURL }) => {
+test('Invalid Login Test :02', async ({ page , baseURL }) => {
     const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);  
 
     // Enter invalid email and password
-    await login.enterEmail(ExcelUtil.getExcelData('Sheet1',2,1));
-    await login.enterPassword(ExcelUtil.getExcelData('Sheet1',2,3));
+    await login.enterEmail(ExcelUtil.getExcelData('Sheet1',2,2));
+    await login.enterPassword(ExcelUtil.getExcelData('Sheet1',2,4));
 
     // Click the login button
     await login.clickLoginButton();
@@ -43,7 +43,7 @@ test('Invalid Login Test', async ({ page , baseURL }) => {
 });
 
 
-test('Forgot Password Link Test', async ({ page , baseURL }) => {
+test('Forgot Password Link Test :03', async ({ page , baseURL }) => {
     const login = new loginPage(page);
     // Navigate to the login page
     await page.goto(`${baseURL}`);  
@@ -57,5 +57,6 @@ test('Forgot Password Link Test', async ({ page , baseURL }) => {
     // expected URL for the forgot password page
     const forgotPasswordTitle = await page.title();
     expect(forgotPasswordTitle).toContain('Forgot Password'); // Adjust the expected title as needed
+    await page.goBack();
     logger.info("Forgot Password Link test is complited");
 });

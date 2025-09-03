@@ -4,7 +4,7 @@
         "password": "Anil@123"
     },
     "baseURL":{
-        "url": "http://unosysdev.com/Amar-Ceramic-Test/",
+        "url": "http://unosysdev.com/Amar-Ceramic-Test/login",
         "dashboardURL" : "http://unosysdev.com/Amar-Ceramic-Test/dashboard",
         "forgetedPasswordURL" : "http://unosysdev.com/Amar-Ceramic-Test/ViewsController/passwordRecoveryLink"
     }

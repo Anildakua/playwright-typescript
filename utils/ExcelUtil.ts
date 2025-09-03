@@ -3,7 +3,8 @@ import xlsx from "xlsx";
 
 export class ExcelUtil {
  
-    static filepath: string = path.join('./test-data/Excel apllication from trail.xlsx');
+    static filepath: string = path.join('./test-data/AmarCeremic.xlsx');
+
     static getExcelData(sheetName: string, row: number, col: number): any {
 
         const workbook = xlsx.readFile(ExcelUtil.filepath);
@@ -14,4 +15,15 @@ export class ExcelUtil {
         return cell?.v;
 
     }
+/*
+    
+    static getExcelData(sheetName: string): any[] {
+
+        const workbook = xlsx.readFile(ExcelUtil.filepath);
+        const sheet = workbook.Sheets[sheetName];
+        const data=xlsx.utils.sheet_to_json(sheet); // to convert sheet data to json format
+        return data ;
+
+    }
+        */
 }
